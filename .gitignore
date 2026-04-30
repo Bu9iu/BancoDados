@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+#PG ADMIN
+data/
+data_teste/
+pgadmin/
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
