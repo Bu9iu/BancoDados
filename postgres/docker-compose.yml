@@ -20,12 +20,23 @@ services:
         reservations:
           cpus: '0.05'
           memory: 1G
+  init-pgadmin:
+    image: alpine:latest
+    container_name: init-pgadmin
+    user: root
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
+    command: chown -R 5050:5050 /var/lib/pgadmin
+
   dcs-pgadmin:
     image: dpage/pgadmin4:latest
     container_name: dcs-pgadmin
     restart: always
     depends_on:
-      - dcs-postgres
+      dcs-postgres:
+        condition: service_started
+      init-pgadmin:
+        condition: service_completed_successfully
     environment:
       PGADMIN_DEFAULT_EMAIL: user@localhost.com
       PGADMIN_DEFAULT_PASSWORD: password
