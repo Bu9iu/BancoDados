@@ -226,3 +226,8 @@ pgadmin/
 *.db-shm
 *.db-wal
 *.db-journal
+
+#SQL Server
+sql-data/
+sql-log/
+sql-secrets/
